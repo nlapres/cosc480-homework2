@@ -1,12 +1,12 @@
 -#  This file is app/views/movies/index.html.haml
-%h1 All Movies
+%h1 Movies
 
 %table#movies
   %thead
     %tr
-      %th <a id="title_header" href="http://pure-mesa-4644.herokuapp.com/movies/title">Movie Title</a>
+      %th Movie Title
       %th Rating
-      %th <a id="release_date_header" href="http://pure-mesa-4644.herokuapp.com/movies/release_date">Release Date</a>
+      %th Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|

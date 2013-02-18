@@ -2,13 +2,7 @@
 
 class MoviesController < ApplicationController
   def index
-		sortby=params[:id]
-		if sortby=~/^(title)$/i
-    	@movies = Movie.find_all_by_title
-		elsif sortby=~/^(release_date)$/i
-			@movies = Movie.find_all_by_release_date
-		else
-			@movies = Movie.all
+		@movies = Movie.all
   end
 
   def show

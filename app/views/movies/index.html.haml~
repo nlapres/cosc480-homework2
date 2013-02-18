@@ -4,9 +4,9 @@
 %table#movies
   %thead
     %tr
-      %th <a href="www.google.com">Movie Title</a>
+      %th <a id="title_header" href="movies/title">Movie Title</a>
       %th Rating
-      %th Release Date
+      %th <a id="release_date_header" href="movies/release_date">Release Date</a>
       %th More Info
   %tbody
     - @movies.each do |movie|

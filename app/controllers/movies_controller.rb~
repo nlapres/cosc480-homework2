@@ -3,6 +3,7 @@
 class MoviesController < ApplicationController
   def index
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
+		@sortby=params[:sort]
 		keys = ['G', 'PG', 'PG-13', 'R']
 		keys = params[:ratings].keys if params.has_key?(:ratings)
 		@selected_ratings = keys

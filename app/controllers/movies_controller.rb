@@ -3,9 +3,11 @@
 class MoviesController < ApplicationController
   def index
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
-		@sortby=params[:sort]
+		@sortby = params[:sort]
 		keys = ['G', 'PG', 'PG-13', 'R']
-		keys = params[:ratings].keys if params.has_key?(:ratings)
+		if params.has_key(:ratings)
+			keys = params[:ratings].keys
+		end
 		@selected_ratings = keys
 		if params[:sort]=='title'
 			@movies = Movie.where("rating IN (?)", keys).order("title ASC")

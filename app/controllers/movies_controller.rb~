@@ -5,10 +5,11 @@ class MoviesController < ApplicationController
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
 		keys = ['G', 'PG', 'PG-13', 'R']
 		keys = params[:ratings].keys if params.has_key?(:ratings)
+		@selected_ratings = keys
 		if params[:sort]=='title'
-			@movies = Movie.where("rating IN (?)", keys).order("title DESC")
+			@movies = Movie.where("rating IN (?)", keys).order("title ASC")
 		elsif params[:sort]=='release_date'
-			@movies = Movie.where("rating IN (?)", keys).order("release_date DESC")
+			@movies = Movie.where("rating IN (?)", keys).order("release_date ASC")
 		else
     	@movies = Movie.where("rating IN (?)", keys)
 		end

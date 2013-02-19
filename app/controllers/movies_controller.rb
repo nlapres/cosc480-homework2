@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
 		if params[:sort]=='title'
 			@movies = Movie.find(:rating=>keys, :order=>'title')
 		elsif params[:sort]=='release_date'
-			@movies = Movie.find(:rating=keys, :order=>'release_date')
+			@movies = Movie.find(:rating=>keys, :order=>'release_date')
 		else
     	@movies = Movie.where("rating IN (?)", keys)
 		end

@@ -6,11 +6,11 @@ class MoviesController < ApplicationController
 		keys = ['G', 'PG', 'PG-13', 'R']
 		keys = params[:ratings].keys if params.has_key?(:ratings)
 		if params[:sort]=='title'
-			@movies = Movie.find(keys, :order=>'title', :rating=>keys)
+			@movies = Movie.find(:rating=>keys, :order=>'title')
 		elsif params[:sort]=='release_date'
-			@movies = Movie.find(keys, :order=>'release_date')
+			@movies = Movie.find(:rating=keys, :order=>'release_date')
 		else
-    	@movies = Movie.find(keys)
+    	@movies = Movie.where("rating IN (?)", keys)
 		end
   end
 

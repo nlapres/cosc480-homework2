@@ -2,10 +2,13 @@
 
 class MoviesController < ApplicationController
   def index
+		moviearray = Array.new
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
-		keys = params[:ratings].keys
-		keys.each do |rating|
-			moviearray << Movie.find_all_by_rating(rating)
+		if params.has_key?(:ratings)
+			keys = params[:ratings].keys 
+			keys.each do |rating|
+				moviearray << Movie.find_all_by_rating(rating)
+			end
 		end
 		if params[:sort]=='title'
 			@movies = moviearray.find(:all, :order=>'title')

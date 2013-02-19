@@ -3,7 +3,7 @@
 class MoviesController < ApplicationController
   def index
 		if params[:sort]=='title'
-			@movies = Movie.find_all_by_rating('PG')
+			@movies = Movie.find(:all, :order=>'title')
 		elsif params[:sort]=='release_date'
 			@movies = Movie.all
 		else

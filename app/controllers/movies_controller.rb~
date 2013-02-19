@@ -3,12 +3,14 @@
 class MoviesController < ApplicationController
   def index
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
+		keys = ['G', 'PG', 'PG-13', 'R']
+		keys = params[:ratings].keys if params.has_key?(:ratings)
 		if params[:sort]=='title'
-			@movies = Movie.find(:all, :order=>'title', :rating=>params[:ratings].keys.split(','))
+			@movies = Movie.find(:all, :order=>'title', :rating=>keys)
 		elsif params[:sort]=='release_date'
-			@movies = Movie.find(:all, :order=>'release_date', :rating=>params[:ratings].keys.split(','))
+			@movies = Movie.find(:all, :order=>'release_date', :rating=>keys)
 		else
-    	@movies = Movie.find(:all, :rating=>params[:ratings].keys.split(','))
+    	@movies = Movie.find(:all, :rating=>keys)
 		end
   end
 

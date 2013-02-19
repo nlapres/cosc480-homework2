@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
 		elsif params[:sort]=='release_date'
 			@movies = moviearray.find(:all, :order=>'release_date')
 		else
-    	@movies = moviearray.all
+    	@movies = moviearray
 		end
   end
 

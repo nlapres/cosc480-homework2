@@ -3,7 +3,9 @@
 class MoviesController < ApplicationController
   def index
 		if params.has_key?(:ratings) == false && session.has_key?(:ratings)
-			redirect_to :ratings => session[:ratings] and return
+			redirect_to :ratings => session[:ratings], :sort => session[:sort] and return
+		elsif params.has_key?(:ratings)==false && session.has_key?(:ratings) == false
+			redirect_to :ratings =>['G', 'PG', 'PG-13', 'R']
 		end
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
 		session[:ratings] = params[:ratings]

@@ -2,7 +2,7 @@
 
 class MoviesController < ApplicationController
   def index
-		if params.has_key?(:ratings) == false
+		if params.has_key?(:ratings) == false && session.has_key?(:ratings)
 			redirect_to :ratings => session[:ratings] and return
 		end
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']

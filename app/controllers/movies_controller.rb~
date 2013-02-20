@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
 			redirect_to :ratings => session[:ratings] and return
 		end
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
-		session[:ratings] = params[:ratings] if params.has_key?(:ratings)
+		session[:ratings] = params[:ratings]
 		session[:sort] = params[:sort]
 		keys = ['G', 'PG', 'PG-13', 'R']
 		if session.has_key?(:ratings)

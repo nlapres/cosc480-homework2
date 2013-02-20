@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 		if session.has_key?(:ratings)
 			keys = session[:ratings]
 		end
-		@selected_ratings = session[:ratings]
+		@selected_ratings = keys
 		if session[:sort]=='title'
 			@movies = Movie.where("rating IN (?)", keys).order("title ASC")
 		elsif session[:sort]=='release_date'

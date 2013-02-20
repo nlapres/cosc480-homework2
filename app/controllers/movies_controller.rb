@@ -8,9 +8,10 @@ class MoviesController < ApplicationController
 		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
 		session[:ratings] = params[:ratings]
 		session[:sort] = params[:sort]
-		keys = ['G', 'PG', 'PG-13', 'R']
 		if session.has_key?(:ratings)
 			keys = session[:ratings]
+		else
+			keys = ['G', 'PG', 'PG-13', 'R']
 		end
 		@selected_ratings = keys
 		if session[:sort]=='title'

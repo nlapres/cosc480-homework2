@@ -2,16 +2,20 @@
 
 class MoviesController < ApplicationController
   def index
-		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
-		@sortby = params[:sort]
-		keys = ['G', 'PG', 'PG-13', 'R']
-				if params.has_key?(:ratings)
-			keys = params[:ratings]
+		if params.has_key?(:ratings) == false
+			redirect_to :ratings => session[:ratings] and return
 		end
-		@selected_ratings = keys
-		if params[:sort]=='title'
+		@all_ratings  = ['G', 'PG', 'PG-13', 'R']
+		session[:ratings] = params[:ratings] if params.has_key?(:ratings)
+		session[:sort] = params[:sort]
+		keys = ['G', 'PG', 'PG-13', 'R']
+		if session.has_key?(:ratings)
+			keys = session[:ratings]
+		end
+		@selected_ratings = session[:ratings]
+		if session[:sort]=='title'
 			@movies = Movie.where("rating IN (?)", keys).order("title ASC")
-		elsif params[:sort]=='release_date'
+		elsif session[:sort]=='release_date'
 			@movies = Movie.where("rating IN (?)", keys).order("release_date ASC")
 		else
     	@movies = Movie.where("rating IN (?)", keys)
